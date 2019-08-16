@@ -1,0 +1,26 @@
+﻿@model ApiInterfaceTestModel
+@{
+    ViewData["Title"] = "测试API接口";
+    const int MIN_NUM_OF_LINES = 12;
+}
+
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label asp-for="RequestPath" class="control-label">RequestPath</label>
+            <input asp-for="RequestPath" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ResponseResult" class="control-label">返回结果</label>
+            <a href="@($"{Model.RequestPath}")" target="_blank">Access</a>
+            @{
+                var numOfLines = Model.ResponseResult.Split(Environment.NewLine).Count();
+                if (numOfLines <= MIN_NUM_OF_LINES)
+                {
+                    numOfLines = MIN_NUM_OF_LINES;
+                }
+            }
+            <textarea asp-for="ResponseResult" class="form-control" rows="@numOfLines" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>

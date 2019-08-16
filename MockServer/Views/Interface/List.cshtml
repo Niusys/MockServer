@@ -1,0 +1,63 @@
+﻿@model Page<ApiInterfaceListItem>
+@{
+    ViewData["Title"] = "API接口列表";
+}
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">类别</th>
+            <th scope="col">API地址</th>
+            <th scope="col">说明</th>
+            <th scope="col">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            int index = (Model?.Paging.PageIndex - 1) * Model?.Paging.PageSize ?? 0;
+            foreach (var item in Model.Records)
+            {
+                <tr>
+                    <td scope="row">
+                        @Html.Raw($"{++index}")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RequestPath)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remark)
+                    </td>
+                    <td>
+                        <a asp-action="Test" asp-route-id="@item.InterfaceId">Test</a>
+                        <a asp-action="Modify" asp-route-id="@item.InterfaceId">Modify</a>
+                        <a asp-action="Delete" asp-route-id="@item.InterfaceId">Delete</a>
+                        <a href="@($"/{item.Category}{item.RequestPath}")" target="_blank">Access</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+@if (Model != null)
+{
+    <nav aria-label="Page navigation">
+        @Html.Pager(Model.Paging.Total, Model.Paging.PageSize, Model.Paging.PageIndex, new PagerOptions
+        {
+           PageIndexParameterName = "PageIndex",
+           TagName = "ul",
+           CssClass = "pagination",
+           CurrentPagerItemTemplate = "<li class='active page-item'><a class='page-link' href='javascript:void(0);'>{0}</a></li>",
+           DisabledPagerItemTemplate = "<li class='disabled page-item'><a class='page-link'>{0}</a></li>",
+           PagerItemTemplate = "<li class='page-item'>{0}</li>",
+           PagerItemCssClass = "page-link",
+           Id = "bootstrappager"
+        })
+    </nav>
+}
+
+
