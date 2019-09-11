@@ -9,8 +9,8 @@ docker run --rm \
 --workdir /src dukecheng/aspnetcore:aspnetcore-sdk-2.2.100 bash -c "dotnet restore ./niusys_mock_server.sln && rm -rf ./MockServer/obj/Docker/publish && dotnet publish ./MockServer/MockServer.csproj -c Release -o ./obj/Docker/publish"
 
 echo "current dir: `pwd`"
-mkdir -p ./obj/Docker/publish/buildreport
-env >  ./obj/Docker/publish/buildreport/env.txt
+mkdir -p ./buildreport
+env >  ./buildreport/env.txt
 echo "Image Version: ${imagesNames[number]}:${bulldversion}
     GIT COMMIT: $GIT_COMMIT
     GIT_PREVIOUS_COMMIT:$GIT_PREVIOUS_COMMIT
@@ -22,4 +22,4 @@ echo "Image Version: ${imagesNames[number]}:${bulldversion}
     GIT_AUTHOR_NAME:$GIT_AUTHOR_NAME
     GIT_COMMITTER_EMAIL:$GIT_COMMITTER_EMAIL
     GIT_AUTHOR_EMAIL:$GIT_AUTHOR_EMAIL
-    " > ./obj/Docker/publish/buildreport/buildversion.txt
+    " > ./buildreport/buildversion.txt
