@@ -2,5 +2,5 @@
 ARG source
 WORKDIR /app
 COPY ${source:-obj/Docker/publish} .
-COPY ${source:-buildreport} .
+#COPY ${source:-buildreport} .
 ENTRYPOINT ["dotnet", "MockServer.dll"]
