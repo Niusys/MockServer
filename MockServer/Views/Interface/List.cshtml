@@ -9,6 +9,7 @@
             <th scope="col">#</th>
             <th scope="col">类别</th>
             <th scope="col">API地址</th>
+            <th scope="col">封包</th>
             <th scope="col">说明</th>
             <th scope="col">操作</th>
         </tr>
@@ -28,6 +29,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.RequestPath)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsUseEnvelop)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Remark)

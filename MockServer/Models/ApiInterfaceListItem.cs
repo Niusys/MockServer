@@ -6,6 +6,7 @@ namespace MockServer.Models
     {
         public string InterfaceId { get; set; }
         public string RequestPath { get; set; }
+        public bool IsUseEnvelop { get; set; }
         public string Category { get; set; }
         public string Remark { get; set; }
     }

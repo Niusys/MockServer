@@ -28,7 +28,7 @@ namespace MockServer.ModelMappings
             CreateMap<ApiInterface, ApiInterfaceTestModel>()
                 .ForMember(d => d.InterfaceId, mo => mo.MapFrom(s => s.Sysid.ToString()))
                 .ForMember(d => d.RequestPath, mo => mo.MapFrom(s => $"/{s.Category}{s.RequestPath}"))
-                .ForMember(d => d.ResponseResult, mo => mo.MapFrom<EnvelopMessageWrapperResolver, string>(x => x.ResponseResult));
+                .ForMember(d => d.ResponseResult, mo => mo.MapFrom<EnvelopMessageWrapperResolver>());
         }
     }
 }

@@ -12,5 +12,6 @@ namespace MockServer.Entities
         public string RequestPath { get; set; }
         public string ResponseResult { get; set; }
         public string Remark { get; set; }
+        public bool IsUseEnvelop { get; set; }
     }
 }

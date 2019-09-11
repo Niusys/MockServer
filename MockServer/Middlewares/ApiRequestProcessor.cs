@@ -53,15 +53,22 @@ namespace MockServer.Middlewares
             var entity = await apiInterfaceRepository.SearchOneAsync(Builders<ApiInterface>.Filter.Where(x => x.Category == category && x.RequestPath == realApiPath));
             if (entity != null)
             {
-                var envelop = new EnvelopMessage<object>()
+                if (entity.IsUseEnvelop)
                 {
-                    Code = 200,
-                    Tid = GuidGenerator.GenerateDigitalUUID(),
-                    FriendlyMessage = "返回成功",
-                    ErrorMessage = string.Empty
-                };
-                envelop.Data = JToken.Parse(entity.ResponseResult);
-                await HandleStatus(context, envelop);
+                    var envelop = new EnvelopMessage<object>()
+                    {
+                        Code = 200,
+                        Tid = GuidGenerator.GenerateDigitalUUID(),
+                        FriendlyMessage = "返回成功",
+                        ErrorMessage = string.Empty
+                    };
+                    envelop.Data = JToken.Parse(entity.ResponseResult);
+                    await HandleStatus(context, envelop);
+                }
+                else
+                {
+                    await HandleStatus(context, entity.ResponseResult);
+                }
             }
             else
             {

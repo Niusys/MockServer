@@ -24,6 +24,11 @@
                         <span asp-validation-for="RequestPath" class="text-danger"></span>
                     </div>
                     <div class="form-group">
+                        <label asp-for="IsUseEnvelop" class="control-label">IsUseEnvelop</label>
+                        <input asp-for="IsUseEnvelop" class="form-control" />
+                        <span asp-validation-for="IsUseEnvelop" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
                         <label asp-for="ResponseResult" class="control-label">返回结果</label>
                         <textarea asp-for="ResponseResult" class="form-control" rows="12"></textarea>
                         <span asp-validation-for="ResponseResult" class="text-danger"></span>
