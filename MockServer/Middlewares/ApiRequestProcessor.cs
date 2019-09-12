@@ -67,7 +67,8 @@ namespace MockServer.Middlewares
                 }
                 else
                 {
-                    await HandleStatus(context, entity.ResponseResult);
+                    var data = JToken.Parse(entity.ResponseResult);
+                    await HandleStatus(context, data);
                 }
             }
             else

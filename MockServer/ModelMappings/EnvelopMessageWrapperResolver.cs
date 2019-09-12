@@ -36,8 +36,8 @@ namespace MockServer.ModelMappings
             {
                 try
                 {
-                    JToken.Parse(source.ResponseResult);
-                    return source.ResponseResult;
+                    var result = JToken.Parse(source.ResponseResult);
+                    return JsonConvert.SerializeObject(result, Formatting.Indented);
                 }
                 catch (System.Exception)
                 {
